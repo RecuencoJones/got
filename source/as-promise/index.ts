@@ -74,7 +74,7 @@ export default function asPromise<T>(normalizedOptions: NormalizedOptions): Canc
 					response.body = rawBody;
 				} else {
 					try {
-						response.body = parseBody(response, options.responseType, options.parseJson, options.encoding);
+						response.body = await parseBody(response, options.responseType, options.parseJson, options.encoding);
 					} catch (error) {
 						// Fallback to `utf8`
 						response.body = rawBody.toString();

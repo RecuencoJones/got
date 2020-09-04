@@ -1925,7 +1925,7 @@ export default class Request extends Duplex implements RequestEvents<Request> {
 						headers['content-type'] = 'application/json';
 					}
 
-					this[kBody] = options.stringifyJson(options.json);
+					this[kBody] = await options.stringifyJson(options.json);
 				}
 
 				const uploadBodySize = await getBodySize(this[kBody], options.headers);

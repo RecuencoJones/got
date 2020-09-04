@@ -5,7 +5,7 @@ import {
 	ParseJsonFunction
 } from './types';
 
-const parseBody = (response: Response, responseType: ResponseType, parseJson: ParseJsonFunction, encoding?: BufferEncoding): unknown => {
+const parseBody = async (response: Response, responseType: ResponseType, parseJson: ParseJsonFunction, encoding?: BufferEncoding): Promise<unknown> => {
 	const {rawBody} = response;
 
 	try {
@@ -14,7 +14,7 @@ const parseBody = (response: Response, responseType: ResponseType, parseJson: Pa
 		}
 
 		if (responseType === 'json') {
-			return rawBody.length === 0 ? '' : parseJson(rawBody.toString());
+			return rawBody.length === 0 ? '' : await parseJson(rawBody.toString());
 		}
 
 		if (responseType === 'buffer') {
